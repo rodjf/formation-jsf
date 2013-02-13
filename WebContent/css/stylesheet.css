@@ -1,0 +1,49 @@
+.panel-grid-header {
+	border-style: solid;
+	border-color: olive;
+	border-width: medium;
+	width: 100%;
+}
+.panel-grid-col1 {
+}
+.panel-grid-col2 {
+	width: 200px;
+}
+
+.table-background {
+	border: 2px outset #71A5A5;
+	border-collapse: collapse;
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+	text-align: left;
+}
+
+.table-header {
+	font-weight: bold;
+	text-align: center;
+}
+
+.table-footer {
+	font-style: italic;
+}
+
+.table-odd-row {
+	font-size: 10pt;
+	background-color: rgb(171, 207, 228);
+}
+
+.table-even-row {
+	font-size: 10pt;
+	background-color: rgb(233, 239, 160);
+}
+
+.table-odd-column {
+	font-size: 10pt;
+	background-color: rgb(233, 249, 244);
+}
+
+.table-even-column {
+	font-size: 10pt;
+	background-color: rgb(232, 255, 225);
+}
+

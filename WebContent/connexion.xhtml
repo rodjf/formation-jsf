@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ws="http://taglib.sewatech.fr"> 
+
+<h:head></h:head> 
+<f:view locale="fr_FR">
+<h:body> 
+	<h:form>
+	
+	<!-- Balise personnalisée
+	<tag>
+		<tag-name>passwordValidator</tag-name>
+		<validator>
+			<validator-id>passrdValidator</validator-id>
+			<validator-class>fr.sullygroup.formation.jsf.PasswordValidator</validator-class>
+		</validator>
+	</tag>
+	 -->
+	
+	<h:panelGrid columns="2">
+
+		<!-- LOGIN -->
+
+
+
+		<h:outputLabel for="champLogin" value="Login :" />
+		<h:inputText id="champLogin" value="#{loginBean.login}" required="true" valueChangeListener="#{loginBean.onLoginChange}" />
+		
+		<!-- PASSWORD -->
+		<h:outputText value="Password : " />
+		<h:inputSecret value="#{loginBean.password}" required="true">
+			<f:validateLength minimum="3"></f:validateLength>
+			<!-- <f:validator validatorId="passwordValidator" ></f:validator> -->
+			<ws:validerPassword />		
+		</h:inputSecret>
+		<br />
+		<h:commandButton value="Valider" action="#{loginBean.connecter()}">
+		
+		<!-- DATE en pied de page -->
+		<f:facet name="footer">
+			<h:outputLabel for="aujourdhui" value="Date du jour : " />
+			<h:outputText id="ajourdhui" value="#{loginBean.dateDuJour}"><f:convertDateTime pattern="dd/MM/yyyy hh:mm " />
+			</h:outputText>
+		</f:facet>
+			
+			
+		</h:commandButton>
+	</h:panelGrid>
+		
+	</h:form>
+	<h:messages style="color:red" />
+</h:body>
+</f:view>
+</html>

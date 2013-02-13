@@ -1,0 +1,7 @@
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+    <!-- this is a resource link if you have defined resource globally-->
+      		<Resource name="jdbc/LibrairieDS" auth="Container" type="javax.sql.DataSource"
+               username="sa" password="" driverClassName="org.h2.Driver"
+               url="jdbc:h2:tcp://localhost/librairie"/>
+</Context>

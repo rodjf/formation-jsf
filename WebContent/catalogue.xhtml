@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head><title>Catalogue</title></h:head> 
+
+<body> 
+Catalogue
+<h:form>
+	<h:panelGrid>
+		<h:inputText value="#{catalogueBean.critereTitre}">
+			<f:ajax event="keyup" listener="#{catalogueBean.filtrer()}" render="tableau"></f:ajax>
+		</h:inputText>
+		<h:outputText id="critereTitre" value="#{catalogueBean.critereTitre}" />
+		<h:selectOneMenu value="#{catalogueBean.critereCategorie}" >
+			<f:ajax listener="#{catalogueBean.filtrer()}" render="tableau"></f:ajax>
+			<f:selectItem  itemValue=""/>
+			<f:selectItems value="#{catalogueBean.selectCategories}" />
+			
+		</h:selectOneMenu>
+	</h:panelGrid>
+	<h:dataTable id="tableau" value="#{catalogueBean.produits}" var="produit">
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Titre" />
+			</f:facet>
+			<h:outputText value="#{produit.titre}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Auteur" />
+			</f:facet>
+			<h:outputText value="#{produit.auteur}" />
+		</h:column>
+	</h:dataTable>
+	
+</h:form>
+</body> 
+</html>

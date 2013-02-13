@@ -1,0 +1,11 @@
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee">
+<namespace>http://taglib.sewatech.fr</namespace>
+
+	<tag>
+		<tag-name>validerPassword</tag-name>
+		<validator>
+			<validator-id>passwordValidator</validator-id>
+			<validator-class>fr.sullygroup.formation.jsf.PasswordValidator</validator-class>
+		</validator>
+	</tag>
+</facelet-taglib>
