@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head><title>Catalogue</title></h:head> 
+
+<body> 
+Catalogue
+<h:form id="catalogueForm">
+	<h:panelGrid>
+		<h:inputText value="#{catalogueBean.critereTitre}">
+			<f:ajax event="keyup" listener="#{catalogueBean.filtrer()}" render="groupeTableau"></f:ajax>
+		</h:inputText>
+		<h:outputText id="critereTitre" value="#{catalogueBean.critereTitre}" />
+		<h:selectOneMenu value="#{catalogueBean.critereCategorie}" >
+			<f:ajax listener="#{catalogueBean.filtrer()}" render="groupeTableau"></f:ajax>
+			<f:selectItem  itemValue=""/>
+			<f:selectItems value="#{catalogueBean.selectCategories}" />
+			
+		</h:selectOneMenu>
+	</h:panelGrid>
+	<h:panelGroup id="groupeTableau">
+		<p:dataTable id="tableau" value="#{catalogueBean.produits}" var="produit" rendered="#{!empty catalogueBean.produits}"
+		selectionMode="single" selection="#{catalogueBean.produitSelectionne}" rowKey="#{produit.id}"
+		 >
+		 	<p:ajax event="rowSelect" update=":catalogueForm:detail"></p:ajax>
+		 	
+			<p:column  sortBy="#{produit.titre}">
+				<f:facet name="header">
+					<h:outputText value="Titre" />
+				</f:facet>
+				<h:outputText value="#{produit.titre}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Auteur" />
+				</f:facet>
+				<h:outputText value="#{produit.auteur}" />
+			</p:column>
+			
+		</p:dataTable>
+		
+		<!-- MESSAGES -->
+		<h:message id="messageTable" for="tableau" showDetail="true" tooltip="true" infoStyle="color: black" warnStyle="color: blue" />
+
+				 
+ 
+	 </h:panelGroup>
+	 <br/>
+	 <h:outputText id="detail" value="#{catalogueBean.produitSelectionne.titre}" />
+</h:form>
+</body> 
+</html>

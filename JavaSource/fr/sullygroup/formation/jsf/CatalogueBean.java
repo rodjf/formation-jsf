@@ -32,6 +32,8 @@ public class CatalogueBean implements Serializable {
 	
 	String critereTitre;
 	
+	Produit produitSelectionne;
+	
 	String critereCategorie;
 	
 	private List<SelectItem> selectCategories;
@@ -140,6 +142,14 @@ public class CatalogueBean implements Serializable {
 
 	public void setRenderedEnTete(boolean renderedEnTete) {
 		this.renderedEnTete = renderedEnTete;
+	}
+
+	public Produit getProduitSelectionne() {
+		return produitSelectionne;
+	}
+
+	public void setProduitSelectionne(Produit produitSelectionne) {
+		this.produitSelectionne = produitSelectionne;
 	}
 
 	
