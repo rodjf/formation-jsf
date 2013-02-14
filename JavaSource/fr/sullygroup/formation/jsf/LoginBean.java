@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 
 import org.librairie.dao.ProduitDao;
@@ -11,6 +12,7 @@ import org.librairie.model.Produit;
 
 
 @ManagedBean
+@SessionScoped
 public class LoginBean {
 	private String login;
 	
@@ -24,7 +26,12 @@ public class LoginBean {
 
 	@PostConstruct
 	public void init(){
+		login = new String();
 		System.out.println(getDateDuJour().toString() + " ===== INIT ");
+	}
+	
+	public void annuler(){
+		System.out.println("annuler");
 	}
 	
 /*	public void onChangeValue(ValueChangeEvent valueChangeEvent){

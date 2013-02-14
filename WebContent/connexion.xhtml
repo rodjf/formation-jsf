@@ -36,7 +36,7 @@
 			<!-- <f:validator validatorId="passwordValidator" ></f:validator> -->
 			<ws:validerPassword />		
 		</h:inputSecret>
-		<br />
+		<h:commandButton value="Annuler" action="#{loginBean.annuler()}" immediate="true" />
 		<h:commandButton value="Valider" action="#{loginBean.connecter()}">
 		
 		<!-- DATE en pied de page -->
