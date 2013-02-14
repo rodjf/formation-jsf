@@ -22,19 +22,23 @@ Catalogue
 			
 		</h:selectOneMenu>
 	</h:panelGrid>
+	
+	
 	<h:panelGroup id="groupeTableau">
 		<p:dataTable id="tableau" value="#{catalogueBean.produits}" var="produit" rendered="#{!empty catalogueBean.produits}"
 		selectionMode="single" selection="#{catalogueBean.produitSelectionne}" rowKey="#{produit.id}"
+		 emptyMessage="Rien à afficher !"
 		 >
 		 	<p:ajax event="rowSelect" update=":catalogueForm:detail"></p:ajax>
 		 	
-			<p:column  sortBy="#{produit.titre}">
+			<p:column  sortBy="#{produit.titre}" filterBy="#{produit.titre}" filterMatchMode="contains">
 				<f:facet name="header">
 					<h:outputText value="Titre" />
+ 					
 				</f:facet>
 				<h:outputText value="#{produit.titre}" />
 			</p:column>
-			<p:column>
+			<p:column sortBy="#{produit.auteur}" filterBy="#{produit.auteur}" filterMatchMode="contains">
 				<f:facet name="header">
 					<h:outputText value="Auteur" />
 				</f:facet>
