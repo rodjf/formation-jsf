@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -35,7 +36,6 @@ public class CatalogueBean implements Serializable {
 	
 	private List<SelectItem> selectCategories;
 
-	private String infoStyle = "color: black";
 	private boolean renderedEnTete = true;
 
 	@PostConstruct
@@ -58,22 +58,24 @@ public class CatalogueBean implements Serializable {
 	public void filtrer(){
 		System.out.println("filtrer");
 		int longueur;
+		Severity severite = FacesMessage.SEVERITY_INFO;
+		
 		this.produits = new ProduitDao().findProduitByCriteres(new CriteresProduit(this.critereTitre, this.critereCategorie, idLangues, null));
 		
 		// longueur pour le message
 		longueur = this.produits.size();
 		System.out.println("nb produits trouvés : " + longueur);
-		
-		// le message
-		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "nb produits : " + longueur, "On a trouvé " + longueur + " produits.");
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage("catalogueForm:tableau", facesMessage);
-		
 		// afficher ou pas l'en-tête du tableau
 		if (longueur == 0) { 
 			renderedEnTete = false;
-			infoStyle = "color: blue";
+			severite = FacesMessage.SEVERITY_WARN;
 		}
+		
+		// le message
+		FacesMessage facesMessage = new FacesMessage(severite, "nb produits : " + longueur, "On a trouvé " + longueur + " produits.");
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage("catalogueForm:tableau", facesMessage);
+		
 		
 		
 	}
@@ -131,13 +133,6 @@ public class CatalogueBean implements Serializable {
 		this.selectCategories = selectCategories;
 	}
 
-	public String getInfoStyle() {
-		return infoStyle;
-	}
-
-	public void setInfoStyle(String infoStyle) {
-		this.infoStyle = infoStyle;
-	}
 
 	public boolean isRenderedEnTete() {
 		return renderedEnTete;

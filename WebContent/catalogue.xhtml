@@ -11,36 +11,36 @@ Catalogue
 <h:form id="catalogueForm">
 	<h:panelGrid>
 		<h:inputText value="#{catalogueBean.critereTitre}">
-			<f:ajax event="keyup" listener="#{catalogueBean.filtrer()}" render="tableau messageTable"></f:ajax>
+			<f:ajax event="keyup" listener="#{catalogueBean.filtrer()}" render="groupeTableau"></f:ajax>
 		</h:inputText>
 		<h:outputText id="critereTitre" value="#{catalogueBean.critereTitre}" />
 		<h:selectOneMenu value="#{catalogueBean.critereCategorie}" >
-			<f:ajax listener="#{catalogueBean.filtrer()}" render="tableau messageTable"></f:ajax>
+			<f:ajax listener="#{catalogueBean.filtrer()}" render="groupeTableau"></f:ajax>
 			<f:selectItem  itemValue=""/>
 			<f:selectItems value="#{catalogueBean.selectCategories}" />
 			
 		</h:selectOneMenu>
 	</h:panelGrid>
-	<h:panelGroup>
-	<h:dataTable id="tableau" value="#{catalogueBean.produits}" var="produit" rendered="#{!empty catalogueBean.produits}" >
-		<h:column>
-			<f:facet name="header">
-				<h:outputText value="Titre" />
-			</f:facet>
-			<h:outputText value="#{produit.titre}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">
-				<h:outputText value="Auteur" />
-			</f:facet>
-			<h:outputText value="#{produit.auteur}" />
-		</h:column>
-	</h:dataTable>
-	
-	<!-- MESSAGES -->
-	<h:message id="messageTable" for="tableau" showDetail="true" tooltip="true" infoStyle="#{catalogueBean.infoStyle}" errorStyle="color: red" />
-	<!--<h:messages globalOnly="true" showDetail="true" tooltip="true" infoStyle="color: black" errorStyle="color: red" id="messages" />
-	 -->
+	<h:panelGroup id="groupeTableau">
+		<h:dataTable id="tableau" value="#{catalogueBean.produits}" var="produit" rendered="#{!empty catalogueBean.produits}" >
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Titre" />
+				</f:facet>
+				<h:outputText value="#{produit.titre}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Auteur" />
+				</f:facet>
+				<h:outputText value="#{produit.auteur}" />
+			</h:column>
+		</h:dataTable>
+		
+		<!-- MESSAGES -->
+		<h:message id="messageTable" for="tableau" showDetail="true" tooltip="true" infoStyle="color: black" warnStyle="color: blue" />
+		<!--<h:messages globalOnly="true" showDetail="true" tooltip="true" infoStyle="color: black" errorStyle="color: red" id="messages" />
+		 -->
 	 </h:panelGroup>
 </h:form>
 </body> 
